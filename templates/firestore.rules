@@ -1,0 +1,26 @@
+rules_version = '2';
+
+// Default: everything is closed. Open only what the app needs, path by path.
+// Patterns: see the add-database skill (owner only, public read, own doc only, members only).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // Example: each user can read and write only their own profile document.
+    match /users/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Everything else stays closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

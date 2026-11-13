@@ -1,0 +1,24 @@
+# dependencies and build output
+node_modules/
+dist/
+.firebase/
+.wrangler/
+
+# secrets: never commit
+.env
+.env.*
+!.env.example
+.dev.vars
+*.pem
+*service-account*.json
+*serviceAccount*.json
+*ServiceAccount*.json
+*firebase-adminsdk*.json
+
+# vibe-launchpad working state
+.launchpad/todo.md
+
+# logs and OS files
+*.log
+.DS_Store
+Thumbs.db
