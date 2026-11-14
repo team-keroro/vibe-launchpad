@@ -33,6 +33,7 @@ Node 22 or newer (pinned in `.node-version` and package.json `engines`). Current
 - `src/components/` UI only. No Firebase imports, no business rules.
 - After changing `src/logic/`, run `npm test` and report the result in one line.
 - Deep links by default: opening an item from a list (a post, a song, a dish) changes the URL to include its id (e.g. `/posts/:id`, React Router), so the link can be shared, refreshed and bookmarked. Only skip this if the owner says otherwise.
+- External links open in a new tab: any link to another site (a YouTube page, a photo source, a credit, a map) uses one shared `ExternalLink` component in `src/components/` that renders `<a target="_blank" rel="noopener noreferrer">`. Links inside this app stay in the same tab (React Router `<Link>`). Only skip this if the owner says otherwise.
 
 ## Design
 

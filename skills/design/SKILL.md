@@ -67,7 +67,7 @@ Checks:
 
 ## 5. Polish: the finishing touches
 
-Spacing is the first step. Six more things decide whether an app feels finished. Do them by default on any app with cards, lists or media. They need no new packages.
+Spacing is the first step. Seven more things decide whether an app feels finished. Do them by default on any app with cards, lists or media. They need no new packages.
 
 1. **Three type sizes, no more.** Add these utilities to `src/index.css` and use only them in app components; no loose `text-xs` / `text-sm` / `text-lg`:
 
@@ -97,6 +97,18 @@ Spacing is the first step. Six more things decide whether an app feels finished.
    - A `div` or card with `onClick` is not a button to the browser: make it a `<button>` or `<a>` (better for keyboards too), or give it `role="button"` and `tabIndex={0}`.
    - Draggable things (swipe cards, sliders' handles) use `cursor-grab`, and `active:cursor-grabbing` while held.
    - Before calling a screen done, hover every clickable thing on desktop once; an arrow over something clickable is a bug.
+7. **Links to other sites open in a new tab**, so the visitor never loses the app. Make one component and use it for every outside link (YouTube, photo credits, sources, maps):
+
+   ```tsx
+   // src/components/external-link.tsx
+   export function ExternalLink({ href, children, ...rest }: React.ComponentProps<"a">) {
+     return <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>{children}</a>;
+   }
+   ```
+
+   - Links inside the app (`/games/:id`, the home page) stay in the same tab with React Router `<Link>`.
+   - Never write a bare `<a href="https://...">` in components; search for `href="http` before calling a screen done.
+   - Optional: a small ↗ icon after the text so people know it leaves the site.
 
 Also add this once to `src/index.css`, so people who turned on "동작 줄이기" on their device get no fly-out animations:
 

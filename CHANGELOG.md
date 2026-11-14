@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.2 — 2026-11-14
+- Links to other sites open in a new tab by default: one shared `ExternalLink` component (`target="_blank" rel="noopener noreferrer"`), internal links stay React Router `<Link>`. Added to `design` "Polish" (item 7) and the Code structure rules in `templates/CLAUDE.md`.
+
 ## 0.7.1 — 2026-11-14
 - `design` "Polish": clickable things show the hand cursor on desktop. Tailwind v4 resets buttons to the arrow, so a base CSS rule restores `cursor: pointer` for buttons, links, `role="button"` and form controls (`not-allowed` when disabled); clickable cards must be `<button>`/`<a>`; draggable things use `cursor-grab`. `templates/CLAUDE.md` records the rule.
 
