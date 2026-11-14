@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0 — 2026-11-14
+- New skill `example` (`/example`, or say "예제 해 볼래"): two follow-along examples for first-timers — the lunch picker and a 90s/2000s retro games museum. It shows the exact prompt, asks before running (changes and add-ons welcome), builds through `start-project`, then asks before deploying and sharing.
+- New recipe `retro-games.md`: researched game data, YouTube embeds checked via oEmbed, free-license images only with credits, ASCII art when no image is free, deep-linked detail pages, and the `ascii-terminal` theme.
+- `design`: new mood `ascii-terminal` (dark navy, cyan + magenta neon, Galmuri11 pixel Korean + JetBrains Mono, box-drawn windows, scanlines, blinking cursor).
+- New skill `share` with `make-share.mjs`: QR code (PNG/SVG) and a 1200×630 share card in the site's colors, optional `og:image` link preview, and a ready-to-paste message. `deploy` offers it after publishing.
+
 ## 0.6.1 — 2026-11-14
 - Claude Code is the main agent. The full project rules moved from `templates/AGENTS.md` to `templates/CLAUDE.md` (no import), so Claude no longer reads Codex-only text. `templates/AGENTS.md` is now a thin Codex note: read `CLAUDE.md`, plus the safety checks that Claude's hooks do automatically. `design`, `start-project`, `parallel-work`, the SessionStart hook and README point to `CLAUDE.md`. Existing projects are unchanged.
 

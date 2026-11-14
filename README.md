@@ -31,6 +31,7 @@ counted against that subscription's usage.
 
 | Skill | Say this (Korean) | What it does |
 |---|---|---|
+| `example` | `/example`, "예제 해 볼래" | Follow-along examples (lunch picker, retro games museum with an ASCII-art theme): show the prompt, ask before running, build, deploy, share |
 | `start-project` | "새 프로젝트 시작하자" | Interview → project type → Vite + React + Firebase scaffold, CLAUDE.md rules, Git |
 | `explain` | "5살처럼 설명해줘", "한 단계 더" | Explanation ladder (5살 → 중학생 → 고등학생 → 실무자) |
 | `remember` | "기억해 둬", "내 기억 목록 줘", "퀴즈 내 줘" | Personal memory list at `~/.vibe-launchpad/memory.md` |
@@ -40,6 +41,7 @@ counted against that subscription's usage.
 | `add-database` | "저장되게 해줘" | Firestore with deny-by-default rules |
 | `firebase-setup` | "파이어베이스 연결해줘" | Owner makes a Firebase account and logs the CLI in once; Claude drives the rest with the Firebase CLI (project, web config, Firestore, login providers) |
 | `deploy` | "배포해줘" | Safety check → Firebase Hosting (free `*.web.app`) |
+| `share` | "QR 코드 만들어줘", "공유 카드" | After deploy: link + message, QR code image, share card (title + QR + address), or a KakaoTalk/SNS link preview |
 | `add-domain` | "내 도메인 연결" | Buy (human) + connect a custom domain |
 | `add-server` | "AI 기능 넣고 싶어" | Avoid a server if possible; else Cloudflare Workers proxy with limits |
 | `api-keys` | "API 키 넣어줘" | Spending limits before keys; leak response |
@@ -59,7 +61,7 @@ Hooks (active only inside projects that have `.launchpad/profile.json`):
 
 Templates: `templates/CLAUDE.md` (the project's working rules; Claude Code is the main agent), `AGENTS.md` (thin Codex support: points to CLAUDE.md and adds the safety checks Claude's hooks do), `gitignore`, `firebase.json`, `firestore.rules`, `firestore.indexes.json`.
 
-Recipes: `skills/start-project/recipes/` — song ranking, lunch picker.
+Recipes: `skills/start-project/recipes/` — song ranking, lunch picker, retro games museum.
 
 ## Requirements
 

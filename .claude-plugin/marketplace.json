@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Vibe-coding kit for non-developers: build a web app, keep it safe, put it online for free.",
-    "version": "0.6.1"
+    "version": "0.7.0"
   },
   "plugins": [
     {
       "name": "vibe-launchpad",
       "source": "./",
       "description": "Interview-driven project setup, free Firebase deploy, login levels, cost limits for API keys, plain-language explanations and a personal memory list.",
-      "version": "0.6.1"
+      "version": "0.7.0"
     }
   ]
 }
