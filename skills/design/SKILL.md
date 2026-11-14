@@ -1,6 +1,6 @@
 ---
 name: design
-description: Make the site look distinctive instead of the generic AI look, using a mood preset and component packages (shadcn/ui, Cult UI, Magic UI, Aceternity UI). Use when choosing or changing the look ("예쁘게 해줘", "디자인 바꿔줘", "분위기", "이 사이트처럼", "AI가 만든 티 안 나게", "색 바꿔줘", "폰트 바꿔줘", "간격", "여백", "답답해 보여", "빽빽해", "다듬어줘", "완성도", "polished", "글자 크기", "로딩", "마감") and during start-project.
+description: Make the site look distinctive instead of the generic AI look, using a mood preset and component packages (shadcn/ui, Cult UI, Magic UI, Aceternity UI). Use when choosing or changing the look ("예쁘게 해줘", "디자인 바꿔줘", "분위기", "이 사이트처럼", "AI가 만든 티 안 나게", "색 바꿔줘", "폰트 바꿔줘", "간격", "여백", "답답해 보여", "빽빽해", "다듬어줘", "완성도", "polished", "글자 크기", "로딩", "마감", "커서", "마우스 모양", "손가락 모양") and during start-project.
 ---
 
 # Design
@@ -67,7 +67,7 @@ Checks:
 
 ## 5. Polish: the finishing touches
 
-Spacing is the first step. Five more things decide whether an app feels finished. Do them by default on any app with cards, lists or media. They need no new packages.
+Spacing is the first step. Six more things decide whether an app feels finished. Do them by default on any app with cards, lists or media. They need no new packages.
 
 1. **Three type sizes, no more.** Add these utilities to `src/index.css` and use only them in app components; no loose `text-xs` / `text-sm` / `text-lg`:
 
@@ -82,6 +82,21 @@ Spacing is the first step. Five more things decide whether an app feels finished
 3. **Gestures answer back.** While a card is dragged, tint it toward the choice (green ring = 좋아요/찜, red = 패스) and let the next card grow into place (scale 0.95 → 1). Put the numbers (drag progress 0..1, the behind-card transform) in `src/logic/` with tests; the component only applies them.
 4. **The user's picks stay, and can be undone.** A list the user builds (likes, favorites, a cart) survives a refresh: a hook saves only the ids in `localStorage`, and a tested logic function restores them, skipping unknown ids, duplicates and junk so an old save never breaks the page. Wrap storage calls in try/catch. Every item gets a remove (×) button with a toast. With login (level 1+), save to Firestore instead (`add-database`).
 5. **Give the flow an ending.** When a deck or list runs out, do not stop at "다 봤어요". Show a result, e.g. "오늘은 이거!": one random pick from what they chose, with "다른 거 뽑기" (never the same pick twice in a row), "자세히 보기" (deep link) and "다시 시작".
+
+6. **Clickable things show the hand cursor on desktop.** Tailwind v4 (used by current shadcn) sets buttons back to the normal arrow, so add this once to `src/index.css` and every button, link and clickable card shows the pointer:
+
+   ```css
+   @layer base {
+     button:not(:disabled), [role="button"]:not([aria-disabled="true"]), a[href], summary,
+     label[for], select, input[type="checkbox"], input[type="radio"], input[type="range"],
+     [data-clickable] { cursor: pointer; }
+     :disabled, [aria-disabled="true"] { cursor: not-allowed; }
+   }
+   ```
+
+   - A `div` or card with `onClick` is not a button to the browser: make it a `<button>` or `<a>` (better for keyboards too), or give it `role="button"` and `tabIndex={0}`.
+   - Draggable things (swipe cards, sliders' handles) use `cursor-grab`, and `active:cursor-grabbing` while held.
+   - Before calling a screen done, hover every clickable thing on desktop once; an arrow over something clickable is a bug.
 
 Also add this once to `src/index.css`, so people who turned on "동작 줄이기" on their device get no fly-out animations:
 
