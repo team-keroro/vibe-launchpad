@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.1 — 2026-11-14
+- `design` "Polish": clickable things show the hand cursor on desktop. Tailwind v4 resets buttons to the arrow, so a base CSS rule restores `cursor: pointer` for buttons, links, `role="button"` and form controls (`not-allowed` when disabled); clickable cards must be `<button>`/`<a>`; draggable things use `cursor-grab`. `templates/CLAUDE.md` records the rule.
+
 ## 0.7.0 — 2026-11-14
 - New skill `example` (`/example`, or say "예제 해 볼래"): two follow-along examples for first-timers — the lunch picker and a 90s/2000s retro games museum. It shows the exact prompt, asks before running (changes and add-ons welcome), builds through `start-project`, then asks before deploying and sharing.
 - New recipe `retro-games.md`: researched game data, YouTube embeds checked via oEmbed, free-license images only with credits, ASCII art when no image is free, deep-linked detail pages, and the `ascii-terminal` theme.
