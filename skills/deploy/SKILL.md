@@ -24,6 +24,7 @@ Needs Blaze (pay-as-you-go, credit card): Cloud Functions, App Hosting (Next.js 
 5. **Save point**: create one via `save-points` ("배포 전").
 6. **Deploy**: `npx firebase deploy --project <id> --non-interactive`.
 7. **Report**: give the URL `https://<id>.web.app`, save it as `deployedUrl` in the profile, and suggest: "폰으로 열어 보세요. 이제 와이파이가 달라도, 이 컴퓨터를 꺼도 열려요."
+8. **Share** (first deploy, or when they want to send it): offer the `share` skill — link, QR code image, share card or link preview.
 
 ## Updates
 

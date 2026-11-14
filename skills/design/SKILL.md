@@ -18,6 +18,7 @@ Offer this list (user picks one, or describes their own, or shares a screenshot)
 | `clean-minimal` | 깔끔하고 차분한 | white, gray, one blue accent | Pretendard / Inter | shadcn/ui base only |
 | `retro-pop` | 레트로, 굵고 쨍한 | bold primaries, thick borders | Black Han Sans / Do Hyeon | Cult UI, Magic UI |
 | `playful` | 귀엽고 통통 튀는 | pastel, rounded | Jua / Gaegu | Magic UI (confetti, animations) |
+| `ascii-terminal` | 아스키 아트, 옛날 컴퓨터 화면 | dark navy `#0b0d17`, cyan `#3fd8ff` + magenta `#ff4fd8` neon | Galmuri11 (pixel Korean) / JetBrains Mono | shadcn/ui base only; box-drawn frames, scanlines, blinking cursor (details: `start-project/recipes/retro-games.md`) |
 
 Save the choice to `.launchpad/profile.json` → `mood`.
 

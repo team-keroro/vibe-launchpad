@@ -27,10 +27,10 @@ Ask these, numbered, with the recommended answer marked:
 3. **저장할 데이터가 있나요?** 없음 / 내 것만 / 여러 사람이 같이 보는 데이터
 4. **돈이 드는 키를 쓰나요?** (OpenAI, Claude, Gemini 같은 AI 기능 등) 아니오 / 예
 5. **주소는?** 무료 주소(`내앱.web.app`)로 충분 / 내 도메인(.com 등, 연 1~2만 원)을 쓰고 싶음
-6. **분위기는?** Show the mood list from the `design` skill (5 options).
+6. **분위기는?** Show the mood list from the `design` skill (6 options).
 7. **설명은 어느 수준이 편하세요?** 5살 / 중학생 / 고등학생 / 실무자 (default: 중학생). Store as `explainLevel`: `five-year-old` | `middle-school` | `high-school` | `pro`.
 
-If the user picked a recipe ("노래 랭킹", "점심 추천"), pre-fill answers from `recipes/` and only ask what the recipe leaves open.
+If the user picked a recipe ("노래 랭킹", "점심 추천", "추억의 게임"), pre-fill answers from `recipes/` and only ask what the recipe leaves open.
 
 ## 2. Classify
 
@@ -99,3 +99,6 @@ Project folder name: short English kebab-case from the idea (e.g. `song-ranking`
 
 - `recipes/song-ranking.md` — 친구들이 매기는 내 노래 랭킹
 - `recipes/lunch-picker.md` — 오늘 뭐 먹지? 맛 점수 추천
+- `recipes/retro-games.md` — 90·2000년대 추억의 게임 박물관 (아스키 아트 테마)
+
+The `example` skill walks a first-timer through recipe 2 or the lunch picker from prompt to a shared link.
