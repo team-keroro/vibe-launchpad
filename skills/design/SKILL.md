@@ -1,6 +1,6 @@
 ---
 name: design
-description: Make the site look distinctive instead of the generic AI look, using a mood preset and component packages (shadcn/ui, Cult UI, Magic UI, Aceternity UI). Use when choosing or changing the look ("예쁘게 해줘", "디자인 바꿔줘", "분위기", "이 사이트처럼", "AI가 만든 티 안 나게", "색 바꿔줘", "폰트 바꿔줘", "간격", "여백", "답답해 보여", "빽빽해", "다듬어줘") and during start-project.
+description: Make the site look distinctive instead of the generic AI look, using a mood preset and component packages (shadcn/ui, Cult UI, Magic UI, Aceternity UI). Use when choosing or changing the look ("예쁘게 해줘", "디자인 바꿔줘", "분위기", "이 사이트처럼", "AI가 만든 티 안 나게", "색 바꿔줘", "폰트 바꿔줘", "간격", "여백", "답답해 보여", "빽빽해", "다듬어줘", "완성도", "polished", "글자 크기", "로딩", "마감") and during start-project.
 ---
 
 # Design
@@ -64,7 +64,35 @@ Checks:
 - Take a screenshot before and after. If two text groups blur together, add space *between* them, not inside them.
 - Write the chosen gaps into the project's `AGENTS.md` "Design" section so later changes keep the rhythm.
 
-## 5. Toast messages (default for every project)
+## 5. Polish: the finishing touches
+
+Spacing is the first step. Five more things decide whether an app feels finished. Do them by default on any app with cards, lists or media. They need no new packages.
+
+1. **Three type sizes, no more.** Add these utilities to `src/index.css` and use only them in app components; no loose `text-xs` / `text-sm` / `text-lg`:
+
+   ```css
+   @utility type-title   { font-family: var(--font-heading); font-size: 1.5rem; line-height: 1.3; font-weight: 900; }
+   @utility type-body    { font-size: 0.9375rem; line-height: 1.65; }  /* descriptions, labels, list items */
+   @utility type-caption { font-size: 0.8125rem; line-height: 1.5; }   /* hints, scores, categories, small buttons */
+   ```
+
+   Name them `type-*`, not `text-*`: shadcn's `cn()` would read `text-caption` as a color and drop it. Numbers next to bars or counts get `tabular-nums`. Fine print on top of photos (credits) may stay 11px.
+2. **Never an empty black box while loading.** Show something real first: a video sits on top of its poster photo with a small "불러오는 중…" pill and fades in (opacity transition) a moment after the player loads; images fade in on `onLoad` instead of popping in.
+3. **Gestures answer back.** While a card is dragged, tint it toward the choice (green ring = 좋아요/찜, red = 패스) and let the next card grow into place (scale 0.95 → 1). Put the numbers (drag progress 0..1, the behind-card transform) in `src/logic/` with tests; the component only applies them.
+4. **The user's picks stay, and can be undone.** A list the user builds (likes, favorites, a cart) survives a refresh: a hook saves only the ids in `localStorage`, and a tested logic function restores them, skipping unknown ids, duplicates and junk so an old save never breaks the page. Wrap storage calls in try/catch. Every item gets a remove (×) button with a toast. With login (level 1+), save to Firestore instead (`add-database`).
+5. **Give the flow an ending.** When a deck or list runs out, do not stop at "다 봤어요". Show a result, e.g. "오늘은 이거!": one random pick from what they chose, with "다른 거 뽑기" (never the same pick twice in a row), "자세히 보기" (deep link) and "다시 시작".
+
+Also add this once to `src/index.css`, so people who turned on "동작 줄이기" on their device get no fly-out animations:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
+```
+
+Record the type scale and the motion rules in the project's `AGENTS.md` "Design" section.
+
+## 6. Toast messages (default for every project)
 
 Success and error messages are shown as toasts with **Sonner** (shadcn/ui's toast component), never with `alert()` or ad-hoc banners.
 
@@ -76,10 +104,10 @@ Success and error messages are shown as toasts with **Sonner** (shadcn/ui's toas
 - Always call `notify.success / error / info / warning` from `src/lib/notify.ts`, not `toast` directly, so the defaults stay in one place. Call it from hooks or event handlers, not from `src/logic/` (logic stays pure).
 - Messages are short, plain Korean, and say what happened plus what to do next if it failed.
 
-## 6. "이 사이트처럼 해 줘"
+## 7. "이 사이트처럼 해 줘"
 
 If the user shares a screenshot or URL: describe what you see in 3-5 traits (layout, color, type, spacing, motion), confirm with the user, then apply. Do not copy logos, brand names, text or images from the reference.
 
-## 7. Before/after
+## 8. Before/after
 
 When the user asks why this matters, show it: keep a screenshot of the plain version, then the styled one, side by side.

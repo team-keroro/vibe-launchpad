@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.0 — 2026-11-13
+- `design`: new "Polish" section, the finishing touches every card/list/media app gets by default: a three-size type scale as `type-*` utilities, poster-first loading with fade-in for videos and images, drag feedback (tint + next card grows in, numbers in tested logic), user picks saved by id in `localStorage` with a tolerant restore and a remove button, an ending screen ("오늘은 이거!" random pick with re-roll), and `prefers-reduced-motion` support. `templates/AGENTS.md` records the type scale and motion.
+
 ## 0.5.1 — 2026-11-13
 - New skill `firebase-setup`: the owner only makes a Firebase account and logs the CLI in once; Claude drives the rest with the Firebase CLI (project, web config, Firestore, login providers, hosting). `deploy`, `add-login`, `add-database`, `add-domain`, README and the magic-phrases card point to it instead of console clicks.
 - `start-project` installs React Router and makes deep links (`/items/:id`) the default; `templates/AGENTS.md` records the rule.
