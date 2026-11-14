@@ -22,15 +22,11 @@ Save the choice in `.launchpad/profile.json` → `loginLevel`.
 
 "화면에서 버튼을 숨기는 건 보안이 아니에요. 데이터 규칙에서 막아야 진짜 막힌 거예요." Level 3 must be enforced in `firestore.rules`, not only in React.
 
-## Human steps (Firebase console)
+## Turning providers on (you, with the CLI)
 
-You cannot click the console. Guide the user step by step and wait for "했어":
+Run the `firebase-setup` skill (parts 1, 2 and 4). It creates the project if needed, writes the web config to `src/lib/firebase.ts`, and turns on the chosen providers via the `auth` block in `firebase.json` + `npx firebase deploy --only auth`. The owner only logs the CLI in once; no console clicking.
 
-1. Firebase console → 프로젝트 → Build → Authentication → 시작하기
-2. Sign-in method → enable 이메일/비밀번호 (level 1) and/or Google (level 2-3; pick a support email)
-3. After deploy with a custom domain: Authentication → Settings → 승인된 도메인 → add the domain
-
-If the project does not exist yet, run the project-creation part of the `deploy` skill first.
+Console fallback (only if the CLI deploy of `auth` fails): Authentication → 시작하기 → 로그인 방법 → enable 이메일/비밀번호 and/or Google. With a custom domain, the domain also goes into Authentication → Settings → 승인된 도메인 (see `add-domain`).
 
 ## Code (logic separated from screens)
 

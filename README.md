@@ -38,6 +38,7 @@ counted against that subscription's usage.
 | `design` | "예쁘게 해줘", "분위기 바꿔줘" | Mood presets + shadcn/ui, Cult UI, Magic UI, Aceternity UI |
 | `add-login` | "로그인 넣어줘" | Login level menu 0-3 with Firebase Auth |
 | `add-database` | "저장되게 해줘" | Firestore with deny-by-default rules |
+| `firebase-setup` | "파이어베이스 연결해줘" | Owner makes a Firebase account and logs the CLI in once; Claude drives the rest with the Firebase CLI (project, web config, Firestore, login providers) |
 | `deploy` | "배포해줘" | Safety check → Firebase Hosting (free `*.web.app`) |
 | `add-domain` | "내 도메인 연결" | Buy (human) + connect a custom domain |
 | `add-server` | "AI 기능 넣고 싶어" | Avoid a server if possible; else Cloudflare Workers proxy with limits |
@@ -62,7 +63,7 @@ Recipes: `skills/start-project/recipes/` — song ranking, lunch picker.
 
 ## Requirements
 
-Node.js 20+ (the hooks and the apps use it), Git, a Google account for Firebase.
+Node.js 22+ (the hooks and the apps use it; current Vite does not run on Node 20), Git, a Google account for Firebase. The Firebase CLI (`firebase-tools`) is installed per project by the plugin; the only manual Firebase steps are signing in to the Firebase console once and running `npx firebase-tools@latest login` once per computer.
 
 ## Validate
 

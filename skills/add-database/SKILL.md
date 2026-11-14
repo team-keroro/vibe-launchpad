@@ -15,8 +15,7 @@ Explain the choice in one sentence.
 
 ## Setup
 
-1. Human step (once): Firebase console → Build → Firestore Database → 데이터베이스 만들기 → **프로덕션 모드** → location `asia-northeast3 (Seoul)`. Never choose "테스트 모드" (it opens everything to everyone for 30 days).
-   - If the Firebase CLI version supports it you may try `firebase firestore:databases:create "(default)" --location=asia-northeast3`; fall back to the console if it fails.
+1. You create the database with the CLI: `firebase-setup` part 3 (`npx firebase firestore:databases:create "(default)" --location=asia-northeast3 ...`), then deploy the rules right away. Console fallback only if the CLI keeps failing: **프로덕션 모드**, Seoul. Never "테스트 모드" (it opens everything to everyone for 30 days).
 2. Start from `${CLAUDE_PLUGIN_ROOT}/templates/firestore.rules` and adapt to the data model. Default is deny-all.
 3. Data access lives in hooks (`src/hooks/useXxx.ts`); calculations live in `src/logic/` with tests. Components never call Firestore directly.
 
@@ -36,4 +35,4 @@ Free daily quotas are generous for friends-scale apps (tens of thousands of read
 
 ## Deploy rules
 
-Rules are deployed together with `firebase deploy` (or `firebase deploy --only firestore:rules`). Tell the user: "데이터 규칙도 같이 올라갔어요."
+Rules are deployed together with `npx firebase deploy` (or `npx firebase deploy --only firestore:rules --project <id> --non-interactive`). Tell the user: "데이터 규칙도 같이 올라갔어요."

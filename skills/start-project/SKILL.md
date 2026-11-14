@@ -11,7 +11,10 @@ The user is usually a non-developer. Speak their language (Korean by default), i
 
 - If the current folder already has `.launchpad/profile.json`, this is an existing project: read it, summarize it in 2-3 lines, and ask what they want to add instead of starting over.
 - If the current folder already contains an unrelated project (lots of files, its own package.json), do NOT scaffold into it. Propose a new sibling folder name and ask.
-- Check tools quietly: `node -v` (need 20+), `git --version`. If Node is missing, stop and guide the human to install the LTS version from nodejs.org (it is their step: download + double-click installer). Do not continue until `node -v` works.
+- Check tools quietly: `node -v` (need **22 or newer**), `git --version`. Current Vite and its build tool do not run on Node 20 and fail with a confusing "Cannot find native binding" error, so never scaffold on an older Node.
+  - Node missing or older than 22, and a version manager is installed (`fnm`, `nvm`, `volta`): install/select Node 22 with it yourself (e.g. `fnm install 22 && fnm use 22`) and tell the user in one line.
+  - Otherwise stop and guide the human to install the current LTS (22 or newer) from nodejs.org (it is their step: download + double-click installer). Do not continue until `node -v` shows 22+.
+  - If `npm install` already ran under an older Node, delete `node_modules` and `package-lock.json` and install again under Node 22.
 
 ## 1. Interview (one message, only what is still unknown)
 
@@ -47,15 +50,16 @@ Tell the user the type and why, in 2-3 sentences, then continue.
 
 Project folder name: short English kebab-case from the idea (e.g. `song-ranking`).
 
-1. `npm create vite@latest <name> -- --template react-ts` then `cd <name>` and `npm install`.
+1. `npm create vite@latest <name> -- --template react-ts` then `cd <name>` and `npm install`. Pin the Node version: write `22` to `.node-version` and add `"engines": { "node": ">=22" }` to package.json.
 2. Tailwind + shadcn/ui: follow the current official shadcn Vite guide (`npx shadcn@latest init`). If a command asks interactive questions, pick defaults.
 3. Vitest: `npm install -D vitest` and add `"test": "vitest run"` to package.json scripts.
-4. Folders: `src/logic/` (pure functions + tests), `src/hooks/` (custom hooks), `src/components/`, `src/lib/` (setup such as `firebase.ts`), `src/data/` (static data files).
-5. Copy kit templates from `${CLAUDE_PLUGIN_ROOT}/templates/`:
+4. Routing: `npm install react-router-dom`. Default rule: opening an item from a list puts its id in the URL (`/songs/:id`) so it is a deep link that can be shared and refreshed, unless the owner says otherwise. (`firebase.json` already rewrites every path to `index.html`, so these links work after deploy.)
+5. Folders: `src/logic/` (pure functions + tests), `src/hooks/` (custom hooks), `src/components/`, `src/lib/` (setup such as `firebase.ts`), `src/data/` (static data files).
+6. Copy kit templates from `${CLAUDE_PLUGIN_ROOT}/templates/`:
    - `AGENTS.md` → project root (fill in the placeholders from the interview)
    - `CLAUDE.md` → project root (it only imports AGENTS.md)
    - `gitignore` → `.gitignore` (merge with Vite's, keep `.env*` lines)
-6. Write `.launchpad/profile.json`:
+7. Write `.launchpad/profile.json`:
 
 ```json
 {
@@ -77,9 +81,10 @@ Project folder name: short English kebab-case from the idea (e.g. `song-ranking`
 
    `paidKeys` starts as `[]`, even if the answer to question 4 was 예 or "maybe later": never write provider names or notes there. Only the `api-keys` skill adds entries (objects with `provider`, `monthlyLimitUsd`, `limitSetOn`, `where`), when a key is actually added.
 
-7. Apply the mood with the `design` skill, including its toast setup (Sonner, `src/lib/notify.ts`, one `<Toaster />` at bottom-center with 5-second auto-dismiss).
-8. If a recipe was chosen, build its first version following the recipe file.
-9. Git: `git init`, first save point via the `save-points` skill ("첫 시작").
+8. Apply the mood with the `design` skill, including its toast setup (Sonner, `src/lib/notify.ts`, one `<Toaster />` at bottom-center with 5-second auto-dismiss).
+9. If a recipe was chosen, build its first version following the recipe file.
+10. Git: `git init`, first save point via the `save-points` skill ("첫 시작").
+11. Types B-E: run the `firebase-setup` skill now (or at the first "배포해줘" if the owner wants to see it locally first). The owner only makes a Firebase account and logs the CLI in once; you do the rest.
 
 ## 4. Finish
 

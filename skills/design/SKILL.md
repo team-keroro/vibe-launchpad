@@ -1,6 +1,6 @@
 ---
 name: design
-description: Make the site look distinctive instead of the generic AI look, using a mood preset and component packages (shadcn/ui, Cult UI, Magic UI, Aceternity UI). Use when choosing or changing the look ("예쁘게 해줘", "디자인 바꿔줘", "분위기", "이 사이트처럼", "AI가 만든 티 안 나게", "색 바꿔줘", "폰트 바꿔줘") and during start-project.
+description: Make the site look distinctive instead of the generic AI look, using a mood preset and component packages (shadcn/ui, Cult UI, Magic UI, Aceternity UI). Use when choosing or changing the look ("예쁘게 해줘", "디자인 바꿔줘", "분위기", "이 사이트처럼", "AI가 만든 티 안 나게", "색 바꿔줘", "폰트 바꿔줘", "간격", "여백", "답답해 보여", "빽빽해", "다듬어줘") and during start-project.
 ---
 
 # Design
@@ -41,7 +41,30 @@ Rules:
 - Use at most 2 packages per project, so the style stays consistent.
 - Components go in `src/components/`; they must not contain business logic (see `logic-and-tests`).
 
-## 4. Toast messages (default for every project)
+## 4. Spacing rhythm (where text is heavy)
+
+Cramped text is the fastest way to look unfinished. But spacing everything out evenly looks loose and empty. The rule: **more space between groups than inside a group, and more space only where text is heavy.**
+
+Text-heavy groups get room (Tailwind steps, 1 step = 4px):
+
+| Where | Inside the group | Between this group and the next |
+|---|---|---|
+| Title block: name + category badge + subtitle/description | title ↔ subtitle `gap-2` (8px), description `leading-relaxed` | `space-y-5`–`6` (20–24px) before the next group |
+| Label rows: ratings, taste/score gauges, key–value lists | row gap `gap-3` (12px), label ↔ bar/value `gap-3` | `mt-5`–`6` before and after the list |
+| Helper or hint text between components (e.g. "오른쪽으로 밀면 찜, 왼쪽은 패스") | — | `my-5` (20px) above and below, `leading-relaxed`; it separates two areas, so it never touches either |
+| Section headings (e.g. "찜한 메뉴") | heading ↔ first item `mb-4` | list items `gap-3` |
+| Text area inside a card | padding `p-5`–`6` (20–24px) | — |
+
+Keep these tight (do NOT add space here):
+- Image or video areas, thumbnail strips, icon + label buttons, badges, chips, toolbars: `gap-1`–`2` (4–8px).
+- Inside one line (icon next to text, number next to bar).
+
+Checks:
+- Use at most 3–4 different gaps on one screen, all from the 4px scale.
+- Take a screenshot before and after. If two text groups blur together, add space *between* them, not inside them.
+- Write the chosen gaps into the project's `AGENTS.md` "Design" section so later changes keep the rhythm.
+
+## 5. Toast messages (default for every project)
 
 Success and error messages are shown as toasts with **Sonner** (shadcn/ui's toast component), never with `alert()` or ad-hoc banners.
 
@@ -53,10 +76,10 @@ Success and error messages are shown as toasts with **Sonner** (shadcn/ui's toas
 - Always call `notify.success / error / info / warning` from `src/lib/notify.ts`, not `toast` directly, so the defaults stay in one place. Call it from hooks or event handlers, not from `src/logic/` (logic stays pure).
 - Messages are short, plain Korean, and say what happened plus what to do next if it failed.
 
-## 5. "이 사이트처럼 해 줘"
+## 6. "이 사이트처럼 해 줘"
 
 If the user shares a screenshot or URL: describe what you see in 3-5 traits (layout, color, type, spacing, motion), confirm with the user, then apply. Do not copy logos, brand names, text or images from the reference.
 
-## 6. Before/after
+## 7. Before/after
 
 When the user asks why this matters, show it: keep a screenshot of the plain version, then the styled one, side by side.
