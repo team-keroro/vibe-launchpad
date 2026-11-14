@@ -15,21 +15,15 @@ Needs Blaze (pay-as-you-go, credit card): Cloud Functions, App Hosting (Next.js 
 ## Steps
 
 1. **Safety check first**: run the `safety-check` skill. Stop if anything is red.
-2. **Firebase CLI**: use `npx firebase-tools@latest` (no global install needed), or `firebase` if already installed.
-3. **Login (human step)**: `npx firebase-tools login`. A browser opens; the user signs in with their Google account and approves. Tell them exactly that, and wait.
-4. **Project** (first time only; skip if `.launchpad/profile.json` has `firebaseProjectId`):
-   - Pick an id: project name + 4 random lowercase chars (globally unique, lowercase, hyphens), e.g. `song-ranking-k7q2`. The id becomes the free address `song-ranking-k7q2.web.app`, so ask if they like it.
-   - `npx firebase-tools projects:create <id> --display-name "<name>"`. If it fails (terms not accepted, quota), guide the user to create it in console.firebase.google.com and paste the id.
-   - If the app uses Auth/Firestore: `npx firebase-tools apps:create web <name> --project <id>`, then `npx firebase-tools apps:sdkconfig web --project <id>` and put the config into `src/lib/firebase.ts`.
-   - Save `firebaseProjectId` to the profile.
-5. **Config files** (write them, don't run interactive `firebase init`):
-   - `.firebaserc` → `{ "projects": { "default": "<id>" } }`
-   - `firebase.json` → start from `${CLAUDE_PLUGIN_ROOT}/templates/firebase.json`; remove the `firestore` block if the app has no database.
+2. **Firebase connected?** If `npx firebase-tools@latest login:list` shows no account or `firebaseProjectId` is null, run the `firebase-setup` skill first. The owner's only steps are there: a Firebase account and one CLI login. You do everything else with the CLI.
+3. **Config files** (write them, don't run interactive `firebase init`):
+   - `.firebaserc` → `{ "projects": { "default": "<id>" } }` (firebase-setup writes it)
+   - `firebase.json` → start from `${CLAUDE_PLUGIN_ROOT}/templates/firebase.json`; remove the `firestore` block if the app has no database; keep any `auth` block firebase-setup added.
    - If the app uses Firestore: copy `${CLAUDE_PLUGIN_ROOT}/templates/firestore.indexes.json`, and `firestore.rules` if the project has none yet.
-6. **Tests and build**: `npm test` (if tests exist) then `npm run build`. Fix failures before deploying; explain in one line what was broken.
-7. **Save point**: create one via `save-points` ("배포 전").
-8. **Deploy**: `npx firebase-tools deploy --project <id>`.
-9. **Report**: give the URL `https://<id>.web.app`, save it as `deployedUrl` in the profile, and suggest: "폰으로 열어 보세요. 이제 와이파이가 달라도, 이 컴퓨터를 꺼도 열려요."
+4. **Tests and build**: `npm test` (if tests exist) then `npm run build`. Fix failures before deploying; explain in one line what was broken.
+5. **Save point**: create one via `save-points` ("배포 전").
+6. **Deploy**: `npx firebase deploy --project <id> --non-interactive`.
+7. **Report**: give the URL `https://<id>.web.app`, save it as `deployedUrl` in the profile, and suggest: "폰으로 열어 보세요. 이제 와이파이가 달라도, 이 컴퓨터를 꺼도 열려요."
 
 ## Updates
 
@@ -37,13 +31,14 @@ Same command again after changes. Remind: "고친 뒤 '다시 올려줘' 하면 
 
 ## Preview link (optional)
 
-To show friends a draft without touching the real site: `npx firebase-tools hosting:channel:deploy preview --expires 7d`. It gives a temporary URL that expires.
+To show friends a draft without touching the real site: `npx firebase hosting:channel:deploy preview --expires 7d --project <id> --non-interactive`. It gives a temporary URL that expires.
 
 ## Problems
 
 | Message | Meaning | Action |
 |---|---|---|
-| `Failed to authenticate` | 로그인이 풀렸어요 | human: `firebase login --reauth` |
-| `HTTP Error: 403` | 이 구글 계정이 그 프로젝트 권한이 없어요 | check account / project id |
+| `Failed to authenticate` / `not logged in` | 로그인이 풀렸어요 | owner runs `npx firebase-tools@latest login --reauth` in their terminal (see `firebase-setup`) |
+| `HTTP Error: 403` | 이 구글 계정이 그 프로젝트 권한이 없어요 | compare `login:list` with the project; owner re-logs in with the right account |
+| Hosting site not found | 진열대가 아직 없어요 | `npx firebase hosting:sites:create <id> --project <id> --non-interactive`, then deploy again |
 | Blank page on web.app | 주소 이동 설정 문제 | ensure SPA rewrite to `/index.html` in firebase.json and `public: "dist"` |
 | `requires the Blaze plan` | 유료 플랜이 필요한 기능을 쓰고 있어요 | find which feature; prefer a free alternative (see `add-server`) |

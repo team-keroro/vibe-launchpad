@@ -22,6 +22,8 @@ Tips to tell them: check the renewal price, turn on auto-renew, keep WHOIS priva
 
 ## Connecting (mixed steps)
 
+This is the one Firebase task the CLI can't do: connecting a custom domain happens in the console, and the DNS records go in at the registrar. Keep the owner's clicks to these.
+
 1. Human: Firebase console → Hosting → 커스텀 도메인 추가 → enter the domain.
 2. Firebase shows DNS records (usually TXT for ownership + A records, or a CNAME for `www`). Ask the user to paste them to you or show a screenshot.
 3. You: rewrite them as a simple table: "타입 / 이름(호스트) / 값". Explain that `@` means the bare domain.

@@ -24,18 +24,22 @@ Made with vibe-launchpad. These rules apply to any AI coding agent (Claude Code,
 
 Vite + React + TypeScript + Tailwind + shadcn/ui, Vitest, Firebase (Hosting, Auth, Firestore). No Next.js, no Cloud Functions, no Storage unless the owner agrees to the Blaze plan.
 
+Node 22 or newer (pinned in `.node-version` and package.json `engines`). Current Vite does not run on Node 20.
+
 ## Code structure (kitchen vs dining hall)
 
 - `src/logic/` pure functions + `*.test.ts` (Vitest). All calculations, sorting, scoring, validation, permission decisions live here.
 - `src/hooks/` custom hooks: state, Firebase/fetch calls; they call logic functions.
 - `src/components/` UI only. No Firebase imports, no business rules.
 - After changing `src/logic/`, run `npm test` and report the result in one line.
+- Deep links by default: opening an item from a list (a post, a song, a dish) changes the URL to include its id (e.g. `/posts/:id`, React Router), so the link can be shared, refreshed and bookmarked. Only skip this if the owner says otherwise.
 
 ## Design
 
 - Mood: {{MOOD}}
 - Colors / fonts: {{DESIGN_TOKENS}}
 - Component packages: {{PACKAGES}} (free components only, max 2 packages)
+- Spacing: {{SPACING}} (design skill "Spacing rhythm": more space between text groups than inside them; images, thumbnails and toolbars stay tight)
 - Keep this look on every change; use theme CSS variables, not hard-coded colors.
 
 ## Messages (toasts)

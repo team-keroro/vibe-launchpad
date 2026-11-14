@@ -23,4 +23,5 @@ description: Run the project on the user's own computer and explain what localho
 | Port already in use | 그 방에 이미 다른 프로그램이 있어요 | stop the old server or let Vite pick another port |
 | Phone can't connect | 폰과 컴퓨터가 다른 와이파이거나, 회사 와이파이가 막고 있어요 | same Wi-Fi; otherwise deploy |
 | Blank page | 화면 코드에 오류가 있어요 | read the browser console, fix, and tell the user what broke in one line |
-| `npm` not found | Node 가 아직 설치 안 됐어요 | human step: install Node LTS from nodejs.org |
+| `npm` not found | Node 가 아직 설치 안 됐어요 | human step: install Node 22+ (LTS) from nodejs.org |
+| "Cannot find native binding" / Vite won't start | 컴퓨터의 Node 가 너무 옛날 버전이에요 (22 이상 필요) | switch to Node 22+ (`fnm`/`nvm` if installed, else human step from nodejs.org), then delete `node_modules` + `package-lock.json` and `npm install` again |
