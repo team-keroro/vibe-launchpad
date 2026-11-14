@@ -25,7 +25,7 @@ Save the choice to `.launchpad/profile.json` → `mood`.
 
 - Set theme colors as CSS variables in the shadcn theme (`src/index.css`), not hard-coded per component.
 - Load the fonts (Google Fonts link or `@fontsource` package). Pretendard: use its official CDN or npm package.
-- Write the chosen colors/fonts/mood into the project's `AGENTS.md` "Design" section so every later change keeps the same look.
+- Write the chosen colors/fonts/mood into the project's `CLAUDE.md` "Design" section so every later change keeps the same look.
 
 ## 3. Add components from packages
 
@@ -62,7 +62,7 @@ Keep these tight (do NOT add space here):
 Checks:
 - Use at most 3–4 different gaps on one screen, all from the 4px scale.
 - Take a screenshot before and after. If two text groups blur together, add space *between* them, not inside them.
-- Write the chosen gaps into the project's `AGENTS.md` "Design" section so later changes keep the rhythm.
+- Write the chosen gaps into the project's `CLAUDE.md` "Design" section so later changes keep the rhythm.
 
 ## 5. Polish: the finishing touches
 
@@ -90,7 +90,7 @@ Also add this once to `src/index.css`, so people who turned on "동작 줄이기
 }
 ```
 
-Record the type scale and the motion rules in the project's `AGENTS.md` "Design" section.
+Record the type scale and the motion rules in the project's `CLAUDE.md` "Design" section.
 
 ## 6. Toast messages (default for every project)
 

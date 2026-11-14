@@ -31,7 +31,7 @@ counted against that subscription's usage.
 
 | Skill | Say this (Korean) | What it does |
 |---|---|---|
-| `start-project` | "새 프로젝트 시작하자" | Interview → project type → Vite + React + Firebase scaffold, AGENTS.md rules, Git |
+| `start-project` | "새 프로젝트 시작하자" | Interview → project type → Vite + React + Firebase scaffold, CLAUDE.md rules, Git |
 | `explain` | "5살처럼 설명해줘", "한 단계 더" | Explanation ladder (5살 → 중학생 → 고등학생 → 실무자) |
 | `remember` | "기억해 둬", "내 기억 목록 줘", "퀴즈 내 줘" | Personal memory list at `~/.vibe-launchpad/memory.md` |
 | `run-local` | "실행해줘" | Local run + what localhost means |
@@ -57,7 +57,7 @@ Hooks (active only inside projects that have `.launchpad/profile.json`):
 - `hooks/session-end.mjs` — removes the session's heartbeat.
 - `hooks/lib.mjs` — shared helpers. Session heartbeats live in `<git common dir>/vibe-launchpad/sessions/` (inside `.git`, never committed); a session counts as active if seen in the last 60 minutes.
 
-Templates: `templates/AGENTS.md` (+ `CLAUDE.md` that imports it, so Codex and Claude Code follow the same rules), `gitignore`, `firebase.json`, `firestore.rules`, `firestore.indexes.json`.
+Templates: `templates/CLAUDE.md` (the project's working rules; Claude Code is the main agent), `AGENTS.md` (thin Codex support: points to CLAUDE.md and adds the safety checks Claude's hooks do), `gitignore`, `firebase.json`, `firestore.rules`, `firestore.indexes.json`.
 
 Recipes: `skills/start-project/recipes/` — song ranking, lunch picker.
 

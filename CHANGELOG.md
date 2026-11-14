@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.1 — 2026-11-14
+- Claude Code is the main agent. The full project rules moved from `templates/AGENTS.md` to `templates/CLAUDE.md` (no import), so Claude no longer reads Codex-only text. `templates/AGENTS.md` is now a thin Codex note: read `CLAUDE.md`, plus the safety checks that Claude's hooks do automatically. `design`, `start-project`, `parallel-work`, the SessionStart hook and README point to `CLAUDE.md`. Existing projects are unchanged.
+
 ## 0.6.0 — 2026-11-13
 - `design`: new "Polish" section, the finishing touches every card/list/media app gets by default: a three-size type scale as `type-*` utilities, poster-first loading with fade-in for videos and images, drag feedback (tint + next card grows in, numbers in tested logic), user picks saved by id in `localStorage` with a tolerant restore and a remove button, an ending screen ("오늘은 이거!" random pick with re-roll), and `prefers-reduced-motion` support. `templates/AGENTS.md` records the type scale and motion.
 

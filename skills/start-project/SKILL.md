@@ -56,8 +56,8 @@ Project folder name: short English kebab-case from the idea (e.g. `song-ranking`
 4. Routing: `npm install react-router-dom`. Default rule: opening an item from a list puts its id in the URL (`/songs/:id`) so it is a deep link that can be shared and refreshed, unless the owner says otherwise. (`firebase.json` already rewrites every path to `index.html`, so these links work after deploy.)
 5. Folders: `src/logic/` (pure functions + tests), `src/hooks/` (custom hooks), `src/components/`, `src/lib/` (setup such as `firebase.ts`), `src/data/` (static data files).
 6. Copy kit templates from `${CLAUDE_PLUGIN_ROOT}/templates/`:
-   - `AGENTS.md` → project root (fill in the placeholders from the interview)
-   - `CLAUDE.md` → project root (it only imports AGENTS.md)
+   - `CLAUDE.md` → project root (the full working rules; fill in the placeholders from the interview)
+   - `AGENTS.md` → project root (a thin note for Codex: read CLAUDE.md, plus Codex-only safety notes; fill in the project name)
    - `gitignore` → `.gitignore` (merge with Vite's, keep `.env*` lines)
 7. Write `.launchpad/profile.json`:
 

@@ -1,6 +1,6 @@
 {
   "name": "vibe-launchpad",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Guide for non-developers to vibe-code a web app and put it on the internet for free (Firebase), safely, while learning along the way.",
   "author": {
     "name": "vibe-launchpad"
