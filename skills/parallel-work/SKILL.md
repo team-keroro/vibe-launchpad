@@ -47,7 +47,7 @@ The owner expects every finished task to be on `main`. Work left on a branch or 
 ## Before starting any parallel work
 
 1. The project must be a git repo with a clean starting point. If there are uncommitted changes, make a save point first (`save-points`): "저장 포인트 만들었어요: '<summary>'".
-2. Plan the split. Each agent gets one task and a clear list of folders/files it owns. Two writers must never own the same file. Work that touches shared files (shared types, the main server file, AGENTS.md) runs one at a time, not in parallel.
+2. Plan the split. Each agent gets one task and a clear list of folders/files it owns. Two writers must never own the same file. Work that touches shared files (shared types, the main server file, CLAUDE.md) runs one at a time, not in parallel.
 3. Agents that only read (review, research) may share the main folder. Every agent that WRITES gets its own worktree.
 
 ## Each writing agent

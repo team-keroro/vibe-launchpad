@@ -29,7 +29,7 @@ try {
   const lines = [
     `vibe-launchpad project "${p.name ?? path.basename(root)}": ${p.idea ?? ''}`,
     `type ${p.type ?? '?'}, login level ${p.loginLevel ?? '?'}, data ${p.data ?? '?'}, explain level ${p.explainLevel ?? 'middle-school'}, deployed: ${p.deployedUrl ?? 'not yet'}.`,
-    'Follow AGENTS.md. The owner is a non-developer: plain Korean, gloss technical words, never "as I mentioned".',
+    'Follow CLAUDE.md. The owner is a non-developer: plain Korean, gloss technical words, never "as I mentioned".',
     'Work style: one session, one task queue (.launchpad/todo.md, task-queue skill). Do every request yourself in this session, one item at a time. Never hand work to subagents, workflows or new sessions (the guard blocks them) unless the owner explicitly asks for parallel work (parallel-work skill).',
     `Owner's memory list: ${memory}${existsSync(memory) ? '' : ' (not created yet)'}.`,
   ]
