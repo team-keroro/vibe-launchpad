@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0 — 2026-11-18
+- New skill `add-analytics`: visitor statistics with Google Analytics on the free plan. `start-project` asks once ("방문자 통계를 모을까요?") with a two-line why, an "explain more" option and "잘 모르겠으면 안 하셔도 돼요"; the answer goes to `profile.json` → `analytics`. After the first deploy, `deploy` runs it when wanted: the owner gets the steps first and the console link last, accepts the terms once, says "다 했어", and Claude checks `measurementId` with the CLI, adds `src/lib/analytics.ts` (live site only, a few key events), a footer line and a `/privacy` page as the Google Analytics terms require, and redeploys.
+- `templates/CLAUDE.md`: any web page the owner must visit is explained steps-first, link-last, and checked with the CLI afterwards; records the analytics setting.
+
 ## 0.7.2 — 2026-11-14
 - Links to other sites open in a new tab by default: one shared `ExternalLink` component (`target="_blank" rel="noopener noreferrer"`), internal links stay React Router `<Link>`. Added to `design` "Polish" (item 7) and the Code structure rules in `templates/CLAUDE.md`.
 

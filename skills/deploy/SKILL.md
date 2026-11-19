@@ -24,7 +24,8 @@ Needs Blaze (pay-as-you-go, credit card): Cloud Functions, App Hosting (Next.js 
 5. **Save point**: create one via `save-points` ("배포 전").
 6. **Deploy**: `npx firebase deploy --project <id> --non-interactive`.
 7. **Report**: give the URL `https://<id>.web.app`, save it as `deployedUrl` in the profile, and suggest: "폰으로 열어 보세요. 이제 와이파이가 달라도, 이 컴퓨터를 꺼도 열려요."
-8. **Share** (first deploy, or when they want to send it): offer the `share` skill — link, QR code image, share card or link preview.
+8. **Visitor statistics**: if the profile says `"analytics": "wanted"`, say "사이트가 올라갔어요! 이제 아까 말씀하신 방문자 통계를 켤게요." and run `add-analytics` (one consent page for the owner, then you add the code and deploy again). Skip when it is `"off"` or `"on"`; a profile without the field means it was never asked, so leave it.
+9. **Share** (first deploy, or when they want to send it): offer the `share` skill — link, QR code image, share card or link preview.
 
 ## Updates
 

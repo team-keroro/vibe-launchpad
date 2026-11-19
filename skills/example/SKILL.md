@@ -64,7 +64,7 @@ Build guide: `start-project` recipe `recipes/retro-games.md` (data, media rules,
 
 ## 3. Build
 
-1. Run `start-project` with the prompt as the interview answers. Do **not** re-ask what the prompt already says (who uses it, login, data, mood, explain level). Folder name: `lunch-picker` or `retro-games` (step 0 of `start-project` handles an occupied folder).
+1. Run `start-project` with the prompt as the interview answers. Do **not** re-ask what the prompt already says (who uses it, login, data, mood, explain level). The visitor statistics question is not in the prompt, so it is still asked (with its "잘 모르겠으면 안 하셔도 돼요"). Folder name: `lunch-picker` or `retro-games` (step 0 of `start-project` handles an occupied folder).
 2. Follow the recipe. Narrate in one short line per milestone ("데이터 모으는 중", "카드 화면 만드는 중", "테스트 통과") so the owner sees the steps, not a wall of code.
 3. Run it with `run-local` and give the local link. Then say: "화면 보면서 바꾸고 싶은 거 말해 보세요. 예: '카드 색 더 밝게', '게임 2개 더 넣어 줘'." Handle changes through `task-queue` as usual.
 

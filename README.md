@@ -41,6 +41,7 @@ counted against that subscription's usage.
 | `add-database` | "저장되게 해줘" | Firestore with deny-by-default rules |
 | `firebase-setup` | "파이어베이스 연결해줘" | Owner makes a Firebase account and logs the CLI in once; Claude drives the rest with the Firebase CLI (project, web config, Firestore, login providers) |
 | `deploy` | "배포해줘" | Safety check → Firebase Hosting (free `*.web.app`) |
+| `add-analytics` | "방문자 통계 붙여줘", "몇 명이 봤어?" | Visitor statistics with Google Analytics (free). Asked at project start with a short why and an easy no; after the first deploy the owner reads the steps, clicks the link last and accepts once; Claude checks with the CLI, adds the code, events, a footer notice and a `/privacy` page, and redeploys |
 | `share` | "QR 코드 만들어줘", "공유 카드" | After deploy: link + message, QR code image, share card (title + QR + address), or a KakaoTalk/SNS link preview |
 | `add-domain` | "내 도메인 연결" | Buy (human) + connect a custom domain |
 | `add-server` | "AI 기능 넣고 싶어" | Avoid a server if possible; else Cloudflare Workers proxy with limits |
