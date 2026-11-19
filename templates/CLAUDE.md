@@ -10,6 +10,7 @@ Made with vibe-launchpad. Claude Code is the main agent; these are its rules. (`
 - Data: {{DATA}}
 - Paid API keys: {{PAID_KEYS}}
 - Hosting: Firebase Hosting (Spark free plan). Free address: {{DEPLOYED_URL}}
+- Visitor statistics: {{ANALYTICS}} (Google Analytics via `add-analytics`: `track()` in `src/lib/analytics.ts`, footer line + `/privacy` page; never send names, emails or typed text)
 - Settings file: `.launchpad/profile.json` (keep it updated when choices change)
 
 ## Talking to the owner
@@ -18,7 +19,7 @@ Made with vibe-launchpad. Claude Code is the main agent; these are its rules. (`
 - Never say "as I mentioned / 앞에서 말했듯이". Re-asking is welcome; answer with a fresh analogy.
 - Explanation ladder: "5살처럼" → "중학생" → "고등학생" → "실무자"; "한 단계 더" goes up one level. Default level: {{EXPLAIN_LEVEL}}.
 - When the owner says "기억해 둬", append to `~/.vibe-launchpad/memory.md` (sections: 개념, 보안·비용, 내 프로젝트, 마법의 한마디).
-- When a step needs the human (sign-up, login approval, payment, console clicks, DNS), stop and give click-by-click guidance, then wait.
+- When a step needs the human (sign-up, login approval, payment, console clicks, DNS), stop and give click-by-click guidance, then wait. For a web page visit: the numbered steps first, the link as the very last line (don't open the browser for them, so they read the steps before leaving), plus "막히면 화면을 캡처해서 붙여 넣어 주세요"; when they say "다 했어", check the result yourself with the CLI before moving on.
 
 ## Stack
 

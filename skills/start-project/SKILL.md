@@ -30,6 +30,8 @@ Ask these, numbered, with the recommended answer marked:
 6. **분위기는?** Show the mood list from the `design` skill (6 options).
 7. **설명은 어느 수준이 편하세요?** 5살 / 중학생 / 고등학생 / 실무자 (default: 중학생). Store as `explainLevel`: `five-year-old` | `middle-school` | `high-school` | `pro`.
 
+Then, unless the site stays on this computer only (나만 / type A), ask the **visitor statistics** question as a separate short message after the answers above, using the wording in the `add-analytics` skill step 1: why it helps (2-3 lines), "방문자 통계를 모을까요?" with 네 / 아니요 / 왜 필요한지 설명 듣기, and "잘 모르겠으면 안 하셔도 돼요". "알아서" does not mean yes here: record `"off"` unless they say yes. Only record the answer now; setup happens after the first deploy.
+
 If the user picked a recipe ("노래 랭킹", "점심 추천", "추억의 게임"), pre-fill answers from `recipes/` and only ask what the recipe leaves open.
 
 ## 2. Classify
@@ -73,11 +75,14 @@ Project folder name: short English kebab-case from the idea (e.g. `song-ranking`
   "domain": "free",
   "mood": "dark-studio",
   "explainLevel": "middle-school",
+  "analytics": "off",
   "firebaseProjectId": null,
   "deployedUrl": null,
   "createdAt": "YYYY-MM-DD"
 }
 ```
+
+   `analytics` is `"wanted"` or `"off"` from the statistics question (`add-analytics` sets `"on"` later).
 
    `paidKeys` starts as `[]`, even if the answer to question 4 was 예 or "maybe later": never write provider names or notes there. Only the `api-keys` skill adds entries (objects with `provider`, `monthlyLimitUsd`, `limitSetOn`, `where`), when a key is actually added.
 
