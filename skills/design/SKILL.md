@@ -67,7 +67,7 @@ Checks:
 
 ## 5. Polish: the finishing touches
 
-Spacing is the first step. Seven more things decide whether an app feels finished. Do them by default on any app with cards, lists or media. They need no new packages.
+Spacing is the first step. Eight more things decide whether an app feels finished. Do them by default on any app with cards, lists or media. They need no new packages.
 
 1. **Three type sizes, no more.** Add these utilities to `src/index.css` and use only them in app components; no loose `text-xs` / `text-sm` / `text-lg`:
 
@@ -109,6 +109,7 @@ Spacing is the first step. Seven more things decide whether an app feels finishe
    - Links inside the app (`/games/:id`, the home page) stay in the same tab with React Router `<Link>`.
    - Never write a bare `<a href="https://...">` in components; search for `href="http` before calling a screen done.
    - Optional: a small ↗ icon after the text so people know it leaves the site.
+8. **App-style screen: the header stays, only the content scrolls.** Build every screen like an app, not a long document: the page fills the viewport exactly (`h-dvh flex flex-col overflow-hidden`), the header (and any bottom tab bar) stays fixed (`shrink-0`), and only the content area scrolls (`flex-1 min-h-0 overflow-y-auto`). This is the default for lists and feeds; the whole page never scrolls.
 
 Also add this once to `src/index.css`, so people who turned on "동작 줄이기" on their device get no fly-out animations:
 
