@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.1 — 2026-11-22
+- `design` "Polish" item 8: app-style screens by default. The page fills the viewport (`h-dvh`), the header stays fixed, and only the content area scrolls; the whole page never scrolls. `templates/CLAUDE.md` records the rule in the Design section.
+
 ## 0.8.0 — 2026-11-18
 - New skill `add-analytics`: visitor statistics with Google Analytics on the free plan. `start-project` asks once ("방문자 통계를 모을까요?") with a two-line why, an "explain more" option and "잘 모르겠으면 안 하셔도 돼요"; the answer goes to `profile.json` → `analytics`. After the first deploy, `deploy` runs it when wanted: the owner gets the steps first and the console link last, accepts the terms once, says "다 했어", and Claude checks `measurementId` with the CLI, adds `src/lib/analytics.ts` (live site only, a few key events), a footer line and a `/privacy` page as the Google Analytics terms require, and redeploys.
 - `templates/CLAUDE.md`: any web page the owner must visit is explained steps-first, link-last, and checked with the CLI afterwards; records the analytics setting.

@@ -42,6 +42,7 @@ Node 22 or newer (pinned in `.node-version` and package.json `engines`). Current
 - Colors / fonts: {{DESIGN_TOKENS}}
 - Type scale: `type-title` / `type-body` / `type-caption` utilities in `src/index.css`; no other text sizes in app components (design skill "Polish").
 - Cursor: everything clickable shows the hand pointer on desktop (base rule in `src/index.css`; clickable cards are `<button>`/`<a>`; draggable things use `cursor-grab`). An arrow over something clickable is a bug.
+- Layout: app-style screen. The page fills the viewport (`h-dvh`), the header stays fixed, and only the content area scrolls (`flex-1 min-h-0 overflow-y-auto`); the whole page never scrolls (design skill "Polish" item 8).
 - Motion: {{MOTION}} (design skill "Polish": loading shows a poster then fades in, drags tint toward the choice, `prefers-reduced-motion` respected)
 - Component packages: {{PACKAGES}} (free components only, max 2 packages)
 - Spacing: {{SPACING}} (design skill "Spacing rhythm": more space between text groups than inside them; images, thumbnails and toolbars stay tight)
